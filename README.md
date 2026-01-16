@@ -155,7 +155,11 @@ Given the 72-hour constraint, I didn't set up a CI/CD pipeline (GitHub Actions, 
 
 ### No Crash Reporting
 
-For a production app, I'd integrate Firebase Crashlytics or Sentry for real-time crash monitoring. Helps identify issues users encounter in the wild before they report them. Left out here due to time constraints.
+For a production app, I'd integrate crash monitoring tools like Firebase Crashlytics, Rollbar, or a self-hosted solution for real-time error tracking. Helps identify issues users encounter in the wild before they report them. Left out here due to time constraints.
+
+### No Feature Flags
+
+Didn't set up feature flag management (Unleash, LaunchDarkly, or similar). In production, feature flags allow controlled rollouts, A/B testing, and quick kill switches for problematic features without app updates.
 
 ### No Analytics or Session Recording
 
@@ -185,7 +189,8 @@ Tests cover:
 ## What I'd Add Given More Time
 
 - **CI/CD Pipeline**: GitHub Actions for automated builds and deployments
-- **Crash Reporting**: Firebase Crashlytics integration
+- **Crash Reporting**: Firebase Crashlytics, Rollbar, or self-hosted solution
+- **Feature Flags**: Unleash or LaunchDarkly for controlled rollouts
 - **Analytics**: PostHog or similar for session recording
 - **UI Tests**: Compose testing with Espresso
 - **Better Error Messages**: More granular error types shown to users
