@@ -199,9 +199,9 @@ Tests cover:
 
 > **QT Global Software Ltd - Technical Assessment**
 >
-> This project was developed as part of the Android Developer position assessment.
-> It demonstrates proficiency in modern Android development practices including
-> clean architecture, security implementation, and efficient data handling.
+> This project was developed as part of a technical assessment, demonstrating
+> proficiency in modern Android development practices including clean architecture,
+> security implementation, and efficient data handling.
 >
 > *Not intended for public distribution or commercial use.*
 
