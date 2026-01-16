@@ -193,10 +193,30 @@ Tests cover:
 - **Search**: Filter previously loaded emails
 - **Biometric Lock**: Require fingerprint to view emails
 
-## License
+---
 
-This project is a technical assessment submission and not intended for public distribution.
+## Notice
+
+> **QT Global Software Ltd - Technical Assessment**
+>
+> This project was developed as part of the Android Developer position assessment.
+> It demonstrates proficiency in modern Android development practices including
+> clean architecture, security implementation, and efficient data handling.
+>
+> *Not intended for public distribution or commercial use.*
 
 ---
 
-*Built in Kigali, Rwanda*
+<div align="center">
+
+### Crafted with passion in Kigali, Rwanda
+
+**Jean Claude Mugisha**
+
+Senior Android Developer
+
+[![GitHub](https://img.shields.io/badge/GitHub-mugishajc-181717?style=flat&logo=github)](https://github.com/mugishajc)
+
+*January 2025*
+
+</div>
