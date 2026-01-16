@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">QTMail Guard</string>
+
+    <string name="btn_select_file">Sélectionner un fichier</string>
+    <string name="btn_load_another">Charger un autre fichier</string>
+    <string name="btn_clear">Effacer</string>
+
+    <string name="title_history">Emails précédemment chargés</string>
+    <string name="title_attachment">Pièce jointe</string>
+    <string name="title_integrity_details">Détails de vérification</string>
+
+    <string name="label_verified">Vérifié</string>
+    <string name="label_verification_failed">Échec de vérification</string>
+    <string name="label_pending">En attente</string>
+    <string name="label_body_hash">Hash du contenu</string>
+    <string name="label_image_hash">Hash de l\'image</string>
+    <string name="label_match">Correspondance</string>
+    <string name="label_mismatch">Non correspondant</string>
+
+    <string name="empty_title">Aucun email chargé</string>
+    <string name="empty_description">Sélectionnez un fichier .pb pour afficher et vérifier un email</string>
+
+    <string name="loading_parsing">Analyse du fichier…</string>
+    <string name="loading_verifying">Vérification de l\'intégrité…</string>
+    <string name="loading_processing">Traitement en cours…</string>
+
+    <string name="error_file_read">Impossible de lire le fichier</string>
+    <string name="error_parse_failed">Échec de l\'analyse du fichier</string>
+    <string name="error_image_load">Impossible de charger l\'image</string>
+
+    <string name="content_desc_close">Fermer</string>
+    <string name="content_desc_history">Voir l\'historique</string>
+    <string name="content_desc_attached_image">Image jointe</string>
+</resources>

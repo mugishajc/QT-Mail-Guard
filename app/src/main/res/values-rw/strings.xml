@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">QTMail Guard</string>
+
+    <string name="btn_select_file">Hitamo dosiye</string>
+    <string name="btn_load_another">Fungura indi dosiye</string>
+    <string name="btn_clear">Siba</string>
+
+    <string name="title_history">Imeri zashyizwe mbere</string>
+    <string name="title_attachment">Umugereka</string>
+    <string name="title_integrity_details">Ibisobanuro by\'isuzuma</string>
+
+    <string name="label_verified">Byemejwe</string>
+    <string name="label_verification_failed">Isuzuma ryanze</string>
+    <string name="label_pending">Birategereje</string>
+    <string name="label_body_hash">Hash y\'ubutumwa</string>
+    <string name="label_image_hash">Hash y\'ishusho</string>
+    <string name="label_match">Birahura</string>
+    <string name="label_mismatch">Ntibihura</string>
+
+    <string name="empty_title">Nta meri ifunguwe</string>
+    <string name="empty_description">Hitamo dosiye .pb kugirango urebe kandi usuzume imeri</string>
+
+    <string name="loading_parsing">Gusoma dosiye…</string>
+    <string name="loading_verifying">Gusuzuma…</string>
+    <string name="loading_processing">Gutunganya…</string>
+
+    <string name="error_file_read">Ntibyashobotse gusoma dosiye</string>
+    <string name="error_parse_failed">Gusoma dosiye byanze</string>
+    <string name="error_image_load">Ntibyashobotse gufungura ishusho</string>
+
+    <string name="content_desc_close">Funga</string>
+    <string name="content_desc_history">Reba amateka</string>
+    <string name="content_desc_attached_image">Ishusho yometse</string>
+</resources>
