@@ -5,7 +5,7 @@ An Android application for viewing and verifying email integrity using Protocol 
 ## Author
 
 **Mugisha Jean Claude**
-Senior Android Developer
+Senior Software Engineer, Mobile - Android Java/Kotlin
 Kigali, Rwanda
 
 ## Overview
@@ -213,10 +213,10 @@ Tests cover:
 
 **Jean Claude Mugisha**
 
-Senior Android Developer
+Senior Software Engineer, Mobile - Android Java/Kotlin
 
 [![GitHub](https://img.shields.io/badge/GitHub-mugishajc-181717?style=flat&logo=github)](https://github.com/mugishajc)
 
-*January 2025*
+*January 2026*
 
 </div>
