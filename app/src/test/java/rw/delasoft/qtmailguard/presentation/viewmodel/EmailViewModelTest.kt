@@ -159,7 +159,7 @@ class EmailViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         val state = viewModel.uiState.value
-        assertEquals(VerificationStatus.FAILED, state.email?.verificationStatus)
+        assertEquals(VerificationStatus.VERIFICATION_FAILED, state.email?.verificationStatus)
         assertFalse(state.verificationResult?.isFullyVerified == true)
     }
 
