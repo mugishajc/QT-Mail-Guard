@@ -14,9 +14,11 @@ QTMail Guard loads email data from `.pb` (Protocol Buffer) files, verifies the i
 
 The app was built as a technical assessment for QT Global Software Ltd, demonstrating proficiency in modern Android architecture, security practices, and efficient data handling.
 
-## Screenshots
+## Download APK
 
-*Coming soon - APK build pending*
+**[Download QTMailGuard-v1.0.0-debug.apk](apk/QTMailGuard-v1.0.0-debug.apk)**
+
+> To install: Enable "Install from unknown sources" in your Android settings, then open the APK file.
 
 ## Tech Stack
 
@@ -88,13 +90,15 @@ git clone https://github.com/mugishajc/QT-Mail-Guard.git
 
 The release APK will be at `app/build/outputs/apk/release/`
 
-## Generating Sample .pb Files
+## Testing the App
 
-The app includes a `SampleEmailGenerator` utility. To generate a sample file:
+No `.pb` file? No problem! The app has a built-in sample generator:
 
-1. Run the app in debug mode
-2. The generator can be invoked programmatically to create test `.pb` files
-3. Alternatively, use the protobuf CLI with the provided schema
+1. Open the app
+2. Tap **"Generate Sample .pb"** button on the empty state screen
+3. A sample email is generated, verified, and displayed automatically
+
+This makes it easy to test the full verification flow without needing external files.
 
 ## Proto Schema
 
