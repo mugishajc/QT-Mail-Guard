@@ -28,6 +28,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FileOpen
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.outlined.Science
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
@@ -88,6 +89,9 @@ fun EmailScreen(
                 is EmailEvent.Error -> {
                     snackbarHostState.showSnackbar(event.message)
                 }
+                is EmailEvent.SampleGenerated -> {
+                    snackbarHostState.showSnackbar("Sample generated and loading...")
+                }
                 else -> {}
             }
         }
@@ -111,7 +115,7 @@ fun EmailScreen(
         ) {
             AnimatedContent(
                 targetState = Triple(
-                    uiState.isParsing || uiState.isVerifying,
+                    uiState.isParsing || uiState.isVerifying || uiState.isGeneratingSample,
                     uiState.email,
                     uiState.errorMessage
                 ),
@@ -124,6 +128,7 @@ fun EmailScreen(
                 when {
                     isProcessing -> {
                         LoadingContent(
+                            isGeneratingSample = uiState.isGeneratingSample,
                             isParsing = uiState.isParsing,
                             isVerifying = uiState.isVerifying
                         )
@@ -139,9 +144,11 @@ fun EmailScreen(
                     }
                     else -> {
                         EmptyContent(
+                            isGeneratingSample = uiState.isGeneratingSample,
                             onSelectFile = {
                                 filePicker.launch(arrayOf("application/octet-stream", "*/*"))
-                            }
+                            },
+                            onGenerateSample = { viewModel.generateSampleEmail() }
                         )
                     }
                 }
@@ -204,6 +211,7 @@ private fun EmailTopBar(
 
 @Composable
 private fun LoadingContent(
+    isGeneratingSample: Boolean,
     isParsing: Boolean,
     isVerifying: Boolean
 ) {
@@ -223,6 +231,7 @@ private fun LoadingContent(
             Spacer(modifier = Modifier.width(12.dp))
             Text(
                 text = when {
+                    isGeneratingSample -> "Generating sample email..."
                     isParsing -> "Parsing email file..."
                     isVerifying -> "Verifying integrity..."
                     else -> "Processing..."
@@ -233,10 +242,8 @@ private fun LoadingContent(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        if (isVerifying) {
-            ShimmerVerificationBadge()
-            Spacer(modifier = Modifier.height(16.dp))
-        }
+        ShimmerVerificationBadge()
+        Spacer(modifier = Modifier.height(16.dp))
 
         ShimmerEmailCard()
     }
@@ -277,7 +284,11 @@ private fun EmailContent(
 }
 
 @Composable
-private fun EmptyContent(onSelectFile: () -> Unit) {
+private fun EmptyContent(
+    isGeneratingSample: Boolean,
+    onSelectFile: () -> Unit,
+    onGenerateSample: () -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -297,6 +308,27 @@ private fun EmptyContent(onSelectFile: () -> Unit) {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text("Select Email File")
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        FilledTonalButton(
+            onClick = onGenerateSample,
+            enabled = !isGeneratingSample
+        ) {
+            if (isGeneratingSample) {
+                CircularProgressIndicator(
+                    modifier = Modifier.height(18.dp).width(18.dp),
+                    strokeWidth = 2.dp
+                )
+            } else {
+                Icon(
+                    imageVector = Icons.Outlined.Science,
+                    contentDescription = null
+                )
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(if (isGeneratingSample) "Generating..." else "Generate Sample .pb")
         }
     }
 }

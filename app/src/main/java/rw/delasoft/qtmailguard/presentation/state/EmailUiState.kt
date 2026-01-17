@@ -7,6 +7,7 @@ data class EmailUiState(
     val isLoading: Boolean = false,
     val isParsing: Boolean = false,
     val isVerifying: Boolean = false,
+    val isGeneratingSample: Boolean = false,
     val email: Email? = null,
     val verificationResult: VerificationResult? = null,
     val errorMessage: String? = null,
@@ -20,5 +21,6 @@ sealed interface EmailEvent {
     data object VerificationStarted : EmailEvent
     data object VerificationComplete : EmailEvent
     data object SaveComplete : EmailEvent
+    data class SampleGenerated(val filePath: String) : EmailEvent
     data class Error(val message: String) : EmailEvent
 }

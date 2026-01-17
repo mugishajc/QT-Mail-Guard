@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import rw.delasoft.qtmailguard.domain.model.Email
 import rw.delasoft.qtmailguard.domain.model.VerificationStatus
+import rw.delasoft.qtmailguard.core.util.SampleEmailGenerator
 import rw.delasoft.qtmailguard.domain.usecase.GetEmailsUseCase
 import rw.delasoft.qtmailguard.domain.usecase.ParseEmailFileUseCase
 import rw.delasoft.qtmailguard.domain.usecase.SaveEmailUseCase
@@ -34,7 +35,8 @@ class EmailViewModel @Inject constructor(
     private val parseEmailFile: ParseEmailFileUseCase,
     private val verifyIntegrity: VerifyEmailIntegrityUseCase,
     private val saveEmail: SaveEmailUseCase,
-    private val getEmails: GetEmailsUseCase
+    private val getEmails: GetEmailsUseCase,
+    private val sampleEmailGenerator: SampleEmailGenerator
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(EmailUiState())
@@ -157,6 +159,49 @@ class EmailViewModel @Inject constructor(
     fun clearCurrentEmail() {
         _uiState.update {
             it.copy(email = null, verificationResult = null, errorMessage = null)
+        }
+    }
+
+    fun generateSampleEmail() {
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    isGeneratingSample = true,
+                    isParsing = false,
+                    email = null,
+                    verificationResult = null
+                )
+            }
+
+            try {
+                val file = withContext(Dispatchers.IO) {
+                    val email = sampleEmailGenerator.generateSampleEmail()
+                    sampleEmailGenerator.saveToDisk(appContext, email)
+                }
+
+                _uiState.update { it.copy(isGeneratingSample = false, isParsing = true) }
+                _events.emit(EmailEvent.SampleGenerated(file.absolutePath))
+
+                val parseResult = withContext(Dispatchers.IO) {
+                    file.inputStream().use { inputStream ->
+                        parseEmailFile(inputStream)
+                    }
+                }
+
+                parseResult.fold(
+                    onSuccess = { email ->
+                        _uiState.update { it.copy(isParsing = false, email = email) }
+                        _events.emit(EmailEvent.ParseComplete)
+                        runVerification(email)
+                    },
+                    onFailure = { error ->
+                        handleError(error.message ?: "Failed to parse generated sample")
+                    }
+                )
+            } catch (e: Exception) {
+                _uiState.update { it.copy(isGeneratingSample = false, isParsing = false) }
+                _events.emit(EmailEvent.Error("Failed to generate sample: ${e.message}"))
+            }
         }
     }
 }
