@@ -59,8 +59,8 @@ class EmailViewModelTest {
         isImageVerified = true,
         computedBodyHash = "abc123",
         computedImageHash = "",
-        storedBodyHash = "abc123",
-        storedImageHash = ""
+        expectedBodyHash = "abc123",
+        expectedImageHash = ""
     )
 
     @Before
@@ -150,8 +150,8 @@ class EmailViewModelTest {
             isImageVerified = true,
             computedBodyHash = "computed",
             computedImageHash = "",
-            storedBodyHash = "different",
-            storedImageHash = ""
+            expectedBodyHash = "different",
+            expectedImageHash = ""
         )
         every { mockVerifyIntegrity(any()) } returns failedResult
 
